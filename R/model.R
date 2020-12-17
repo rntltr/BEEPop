@@ -21,7 +21,7 @@ NULL
 #' @export
 
 beepop_model <- function(community){
-  interaction<-attributes(community)$interaction
+  interaction <- attributes(community)$interaction
   popt0<-current_size(community)
 
   R <- growth_rate(community)
@@ -50,7 +50,7 @@ beepop_model <- function(community){
 #' goat <- new_population(23, "goat", 0.5, 100)
 #' shepherd <- new_community("wolf" = wolf, "sheep" = sheep, "goat" = goat)
 #'
-#' model.multi.years(shepherd,10)
+#' model_multi_years(shepherd,10)
 #'
 #' @export
 
@@ -79,21 +79,21 @@ model_multi_years <- function(community, n){
 #' goat <- new_population(23, "goat", 0.5, 100)
 #' shepherd <- new_community("wolf" = wolf, "sheep" = sheep, "goat" = goat)
 #'
-#' model.multi.years.plot(shepherd, 10, gg.plot=TRUE)
-#' model.multi.years.plot(shepherd, 10)
+#' model_multi_years_plot(shepherd, 10, gg.plot=TRUE)
+#' model_multi_years_plot(shepherd, 10)
 #'
 #' @export
 
-model.multi.years.plot <- function(community, n, gg.plot=FALSE){
-  evol_model <- model.multi.years(community, n)
+model_multi_years_plot <- function(community, n, gg.plot=FALSE){
+  evol_model <- model_multi_years(community, n)
   if(gg.plot==FALSE){
-    RColorBrewer::ncolor <- brewer.pal(n = ncol(evol_model), name = "Set1")
+    ncolor <- RColorBrewer::brewer.pal(n = ncol(evol_model), name = "Set1")
     plot(evol_model[,1], lty=1, type="l", col="red", ylim=c(0,max(evol_model)),
          main="Species number evolution",
          xlab="Years",
          ylab="Species number")
     for(i in 2:ncol(evol_model)){
-      lines(evol_model[,i], col=ncolor[1])
+      lines(evol_model[,i], col=ncolor[i])
     }
     legend("bottomright",legend=c(colnames(evol_model)), lty=1, cex=0.8,
            col=ncolor[c(1:ncol(evol_model))])
@@ -107,10 +107,6 @@ model.multi.years.plot <- function(community, n, gg.plot=FALSE){
       ggtitle("Species number evolution")
   }
 }
-
-
-
-
 
 
 
